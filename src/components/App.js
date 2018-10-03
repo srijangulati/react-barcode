@@ -12,15 +12,15 @@ export default class App extends Component{
         return (
             <Grid>
                 <Row>
-                  <Col xs={12} md={4} mdOffset={4}>
-                    <Button onClick={this._scan}>{this.state.scanning ? 'Stop' : 'Start'}</Button>
+                  <Col sm={12} md={4} mdOffset={4}>
+                    <Button onClick={this._scan} block>{this.state.scanning ? 'Stop' : 'Start'}</Button>
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={12} md={6}>
+                  <Col sm={12} md={6}>
                     {this.state.scanning ? <Scanner onDetected={this._onDetected}/> : null}
                   </Col>
-                  <Col xs={12} md={6}>
+                  <Col sm={12} md={6}>
                     <ul className="results">
                         {this.state.results.map((result,index) => (<Result key={index} result={result} />))}
                     </ul>
