@@ -52,7 +52,7 @@ export default class Scanner extends Component{
     }
 
     _onDetected=(result)=>{
-        console.log(result);
+        Quagga.offDetected(this._onDetected);
         this.props.onDetected(result);
     }
 }

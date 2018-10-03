@@ -5,7 +5,7 @@ import ReactScan from './components/App';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div>
           <p>
             Scan your barcode
           </p>
