@@ -1,2 +1,10 @@
- - for the barcode scan POC go to [barcode](https://srijangulati.github.io/build/)
- - scannable product gtins -> [5057373352842]
+ - for the barcode scan POC go here [barcode](https://srijangulati.github.io/build/)
+ - scannable product gtins -> [5057373352842, 0000000001781, 5012345896786, 5057373347800, 0000000004119, 04351494381141]
+ - convert these gtins to barcode here [Convert To Barcode](https://www.barcodesinc.com/generator/index.php)
+ - Used Quagga (JavaScript barcode scanner open source) [Quagga](https://serratus.github.io/quaggaJS/)
+ - Solution :
+    - scans the barcode and searches in the product list if the product is availabe in the local list I have,
+    - if available, it show's the product info, else keeps scanning
+    - wanted to create a API where I could send the scanned barcode and get the product list,
+    - but no server instance was free to host a API, so had to locally store products
+    - I could have used the current running API, but I would have to authenticate first and that would have consumed more time and the POC would have gone for a longer time

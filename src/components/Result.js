@@ -20,8 +20,11 @@ export default class Result extends Component{
               );
             });
       }
-      if(typeof data == 'string'|| typeof data == 'number' || typeof data == 'boolean'){
+      if(typeof data == 'string'|| typeof data == 'number'){
         return (<ListGroupItem>{data}</ListGroupItem>);
+      }
+      if(typeof data == 'boolean'){
+        return (<ListGroupItem>{(data)?"True":"False"}</ListGroupItem>)
       }
     }
     render() {
