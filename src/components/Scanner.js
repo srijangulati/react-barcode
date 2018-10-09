@@ -1,12 +1,40 @@
 import React, { Component } from 'react';
 import Quagga from 'quagga';
 
+
+const url = 'https://api-dev.tesco.com/product/v4/products/gtin?productNumber=';
 export default class Scanner extends Component{
 
+    state = {
+      apiCallStarted:false
+    }
     render() {
         return (
             <div id="interactive" className="viewport"/>
         );
+    }
+
+    fetchResults=()=>{
+      let gTin = this.props.queue.dequeue();
+      if(gTin){
+        fetch(url+gTin+"&countryCode=IE"+"?access_token="+this.props.authToken,{
+          method:"GET",
+          credentials: 'include',
+          mode:'cors',
+          headers:{
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin':'*',
+            'Authorization': 'Bearer '+this.props.authToken
+          }
+        })
+        .then((response)=>{return JSON.parse(response)})
+        .then((res)=>{
+          console.log(res);
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+      }
     }
 
     componentDidMount() {
@@ -53,6 +81,10 @@ export default class Scanner extends Component{
 
     _onDetected=(result)=>{
         //Quagga.offDetected(this._onDetected);
-        this.props.onDetected(result);
+        //this.props.onDetected(result);
+        this.props.queue.enqueue(result.codeResult.code);
+        if(!this.state.apiCallStarted){
+          this.setState({apiCallStarted:true},this.fetchResults)
+        }
     }
 }
